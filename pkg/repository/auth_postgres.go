@@ -2,7 +2,6 @@ package repository
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/Beksultan15/project_go"
 	"github.com/jmoiron/sqlx"
@@ -21,8 +20,8 @@ func NewAuthPostgres(db *sqlx.DB) *AuthPostgres {
 func (a *AuthPostgres) CreateUser(user project_go.User) (int, error) {
 	var id int
 	
-	query := fmt.Sprintf("INSERT INTO %s (first_name,last_name,username,email,password,is_staff,is_superuser,is_active,date_joined) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id", usertable)
-	row := a.db.QueryRow(query,user.First_name,user.Last_name,user.First_name,user.Email,user.Password,true,false,true,time.Now())
+	query := fmt.Sprintf("INSERT INTO %s (first_name,last_name,username,email,password) VALUES ($1,$2,$3,$4,$5) RETURNING id", usertable)
+	row := a.db.QueryRow(query,user.First_name,user.Last_name,user.First_name,user.Email,user.Password)
 	
 	if err:= row.Scan(&id); err!= nil {
 		return 0,err

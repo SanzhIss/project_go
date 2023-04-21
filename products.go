@@ -2,9 +2,8 @@ package project_go
 
 type Products struct {
   Id int `json:"id"`
-  Producttitle string `json:"producttitle"`
-  Price int `json:"price"`
+  Product_title string `json:"product_title"`
+  Price uint `json:"price"`
   Quantity int `json:"quantity"`
-  Pddesc string `json:"pddesc"`
-  Image string `json:"image"`
+  Product_description string `json:"product_description"`
 }

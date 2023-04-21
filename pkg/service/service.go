@@ -19,7 +19,7 @@ type Searhing interface {
 
 
 type Filtering interface{
-	FilteringProduct(c *gin.Context,lte,gte uint) ([]project_go.Products,error)
+	FilteringProduct(c *gin.Context,lte,gte int) ([]project_go.Products,error)
 }
 
 type Service struct {

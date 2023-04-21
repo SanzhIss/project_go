@@ -33,7 +33,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	 filter := router.Group("/products")
 	 {
-		filter.GET("/filter/lte=/:lte&gte=/:gte",h.filter)
+		filter.GET("/filter/",h.filter)
 
 	 }
 

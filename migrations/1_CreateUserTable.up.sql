@@ -3,7 +3,7 @@ CREATE TABLE users (
     first_name    varchar(255) not null,
     last_name     varchar(255) not null,
     username      varchar(255) not null unique,
-    password_hash varchar(255) not null,
+    password varchar(255) not null,
     email         varchar(255) not null,
 
     PRIMARY KEY (id)

@@ -14,7 +14,7 @@ func NewFilterService(repo repository.Filtering) *FilterService {
 	return &FilterService{repo: repo}
 }
 
-func (a *FilterService) FilteringProduct(c *gin.Context,lte,gte uint) ([]project_go.Products,error) {
+func (a *FilterService) FilteringProduct(c *gin.Context,lte,gte int) ([]project_go.Products,error) {
 	return a.repo.FilteringProduct(c,lte,gte)
 	
 }

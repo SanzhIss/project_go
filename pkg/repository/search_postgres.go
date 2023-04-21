@@ -22,7 +22,7 @@ func NewSearchPostgres(dba *sqlx.DB) *SearchPostgres {
 
 
 func (a *SearchPostgres) GetSearchingProduct(c *gin.Context) ([]project_go.Products, error) {
-	dsn := "host=postgres-db user=docker password=docker dbname=go port=5434 sslmode=disable"
+	dsn := "host=localhost user=docker password=docker dbname=go port=5434 sslmode=disable"
 	
 	db,err := gorm.Open(postgres.Open(dsn),&gorm.Config{})
 	var products []project_go.Products
@@ -30,10 +30,10 @@ func (a *SearchPostgres) GetSearchingProduct(c *gin.Context) ([]project_go.Produ
 	if err != nil {
 		panic("Could not connect to the database")
 	}
-	sql := "SELECT fp.id,fp.producttitle,fp.price,fp.quantity,fp.pddesc, pr.image FROM products AS fp join furni_productimages AS pr on fp.id = pr.product_id"
+	sql := "SELECT fp.id,fp.product_title,fp.price,fp.quantity,fp.product_description FROM products as fp"
 		
 		if s := c.Query("s"); s != "" {
-			sql = fmt.Sprintf("%s WHERE fp.producttitle LIKE '%%%s%%' LIMIT 1", sql, s)
+			sql = fmt.Sprintf("%s WHERE fp.product_title LIKE '%%%s%%'", sql, s)
 		}
 		db.Raw(sql).Scan(&products)
 
