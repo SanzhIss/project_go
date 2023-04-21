@@ -1,19 +1,19 @@
 package repository
 
 import (
-	"github.com/Algalyq/Go_project"
+	"github.com/Beksultan15/project_go"
 	"github.com/gin-gonic/gin"
 	"github.com/jmoiron/sqlx"
 )
 
 
 type Authorization interface {
-	CreateUser(user goproject.User) (int, error)
-	GetUser(username,password string) (goproject.User, error)
+	CreateUser(user project_go.User) (int, error)
+	GetUser(username,password string) (project_go.User, error)
 }
 
 type Searching interface {
-	GetSearchingProduct(c *gin.Context) ([]goproject.Products, error)
+	GetSearchingProduct(c *gin.Context) ([]project_go.Products, error)
 }
 
 type Repository struct {

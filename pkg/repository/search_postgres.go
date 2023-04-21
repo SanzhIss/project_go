@@ -2,12 +2,13 @@ package repository
 
 import (
 	"fmt"
-	"github.com/Algalyq/Go_project"
+	"github.com/Beksultan15/project_go"
 	"github.com/jmoiron/sqlx"
 	"gorm.io/driver/postgres"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
+
 
 
 type SearchPostgres struct {
@@ -20,16 +21,16 @@ func NewSearchPostgres(dba *sqlx.DB) *SearchPostgres {
 }
 
 
-func (a *SearchPostgres) GetSearchingProduct(c *gin.Context) ([]goproject.Products, error) {
-	dsn := "host=postgres-db user=docker password=docker dbname=test_db port=5432 sslmode=disable"
+func (a *SearchPostgres) GetSearchingProduct(c *gin.Context) ([]project_go.Products, error) {
+	dsn := "host=postgres-db user=docker password=docker dbname=go port=5434 sslmode=disable"
 	
 	db,err := gorm.Open(postgres.Open(dsn),&gorm.Config{})
-	var products []goproject.Products
+	var products []project_go.Products
 		
 	if err != nil {
 		panic("Could not connect to the database")
 	}
-	sql := "SELECT fp.id,fp.producttitle,fp.price,fp.quantity,fp.pddesc, pr.image FROM furni_products AS fp join furni_productimages AS pr on fp.id = pr.product_id"
+	sql := "SELECT fp.id,fp.producttitle,fp.price,fp.quantity,fp.pddesc, pr.image FROM products AS fp join furni_productimages AS pr on fp.id = pr.product_id"
 		
 		if s := c.Query("s"); s != "" {
 			sql = fmt.Sprintf("%s WHERE fp.producttitle LIKE '%%%s%%' LIMIT 1", sql, s)

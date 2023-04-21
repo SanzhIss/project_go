@@ -7,8 +7,8 @@ import (
 )
 
 const (
-	usertable = "furni_customuser"
-	productsTable = "furni_products"
+	usertable = "users"
+	productsTable = "products"
 )
 
 type Config struct {

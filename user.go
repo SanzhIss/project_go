@@ -1,4 +1,4 @@
-package goproject
+package project_go
 
 type User struct {
 	Id int `json:"-" db:"id"`

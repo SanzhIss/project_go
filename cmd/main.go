@@ -1,14 +1,14 @@
 package main
 
 import (
-
 	"log"
+
 	"github.com/spf13/viper"
-	"github.com/Algalyq/Go_project"
-	"github.com/Algalyq/Go_project/pkg/handler"
-	"github.com/Algalyq/Go_project/pkg/repository"
-	"github.com/Algalyq/Go_project/pkg/service"
-    _ "github.com/golang-migrate/migrate/v4/database/postgres"
+	"github.com/Beksultan15/project_go/pkg/handler"
+	"github.com/Beksultan15/project_go/pkg/repository"
+	"github.com/Beksultan15/project_go/pkg/service"
+	"github.com/Beksultan15/project_go"
+	_ "github.com/golang-migrate/migrate/v4/database/postgres"
 )
 
 func main() {
@@ -34,7 +34,7 @@ func main() {
 	services := service.NewService(repo)
 	handler := handler.NewHandler(services)
 
-	srv := new(goproject.Server)
+	srv := new(project_go.Server)
 	if err := srv.Run(viper.GetString("port"), handler.InitRoutes()); err != nil{
 		log.Fatalf(err.Error())
 	}

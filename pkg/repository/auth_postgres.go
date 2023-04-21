@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Algalyq/Go_project"
+	"github.com/Beksultan15/project_go"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -18,7 +18,7 @@ func NewAuthPostgres(db *sqlx.DB) *AuthPostgres {
 	return &AuthPostgres{db:db}
 }
 
-func (a *AuthPostgres) CreateUser(user goproject.User) (int, error) {
+func (a *AuthPostgres) CreateUser(user project_go.User) (int, error) {
 	var id int
 	
 	query := fmt.Sprintf("INSERT INTO %s (first_name,last_name,username,email,password,is_staff,is_superuser,is_active,date_joined) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id", usertable)
@@ -31,8 +31,8 @@ func (a *AuthPostgres) CreateUser(user goproject.User) (int, error) {
 }
 
 
-func (a *AuthPostgres) GetUser(username,password string) (goproject.User, error) {
-	var user goproject.User
+func (a *AuthPostgres) GetUser(username,password string) (project_go.User, error) {
+	var user project_go.User
 	query := fmt.Sprintf("SELECT id FROM %s WHERE username=$1 AND password=$2", usertable)
 	err := a.db.Get(&user,query,username,password)
 	return user,err

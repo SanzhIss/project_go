@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/Algalyq/Go_project"
-	"github.com/Algalyq/Go_project/pkg/repository"
+	"github.com/Beksultan15/project_go"
+	"github.com/Beksultan15/project_go/pkg/repository"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,7 +14,7 @@ func newSearchService(repo repository.Searching) *SearchService{
 	return &SearchService{repo:repo}
 }
 
-func (a *SearchService) GetSearchingProduct(c *gin.Context) ([]goproject.Products,error) {
+func (a *SearchService) GetSearchingProduct(c *gin.Context) ([]project_go.Products,error) {
 	return a.repo.GetSearchingProduct(c)
 	
 }

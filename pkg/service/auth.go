@@ -2,8 +2,8 @@ package service
 
 import (
 	// "golang.org/x/crypto/bcrypt"
-	"github.com/Algalyq/Go_project"
-	"github.com/Algalyq/Go_project/pkg/repository"
+	"github.com/Beksultan15/project_go"
+	"github.com/Beksultan15/project_go/pkg/repository"
 	"github.com/dgrijalva/jwt-go"
 	"time"
 	"fmt"
@@ -11,6 +11,7 @@ import (
 	"crypto/sha1"
 	"github.com/google/uuid"
 )
+
 
 const (salt = "at%^o*4y5d=&6rg58bvb"
 	   tokenTTL = time.Hour * 1
@@ -31,7 +32,7 @@ func newAuthService(repo repository.Authorization) *AuthService {
 	return &AuthService{repo:repo}
 }
 
-func (a *AuthService) CreateUser(user goproject.User) (int, error) {
+func (a *AuthService) CreateUser(user project_go.User) (int, error) {
 	user.Password = generatePasswordHash(user.Password)	 
     return a.repo.CreateUser(user)
 }

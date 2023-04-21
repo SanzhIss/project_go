@@ -3,8 +3,7 @@ package handler
 import (
 	// "net/http"
 
-	"github.com/Algalyq/Go_project/pkg/service"
-	"github.com/gin-contrib/cors"
+	"github.com/Beksultan15/project_go/pkg/service"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,9 +17,6 @@ func NewHandler(services *service.Service) *Handler {
 
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.Default()
-	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:3000"}
-	router.Use(cors.New(config))
 
 	auth := router.Group("/auth")
 	 {
