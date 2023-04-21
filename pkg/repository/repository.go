@@ -16,14 +16,20 @@ type Searching interface {
 	GetSearchingProduct(c *gin.Context) ([]project_go.Products, error)
 }
 
+type Filtering interface {
+	FilteringProduct(c *gin.Context,lte,gte uint) ([]project_go.Products, error)
+}
+
 type Repository struct {
 	Authorization
 	Searching
+	Filtering
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
     return &Repository{
 		Authorization: NewAuthPostgres(db),
 		Searching: NewSearchPostgres(db),
+		Filtering: NewFilterPostgres(db),
 	}
 }

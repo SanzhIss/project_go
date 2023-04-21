@@ -28,8 +28,16 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	 search := router.Group("/products")
 	 {
 		search.GET("/search/",h.Search)
+
 	 }
 
+	 filter := router.Group("/products")
+	 {
+		filter.GET("/filter/lte=/:lte&gte=/:gte",h.filter)
+
+	 }
+
+	
 
 	 return router
 }

@@ -17,14 +17,21 @@ type Searhing interface {
 	GetSearchingProduct(c *gin.Context) ([]project_go.Products,error)
 }
 
+
+type Filtering interface{
+	FilteringProduct(c *gin.Context,lte,gte uint) ([]project_go.Products,error)
+}
+
 type Service struct {
 	Authorization
 	Searhing
+	Filtering
 }
 
 func NewService(repos *repository.Repository) *Service {
     return &Service{
 		Authorization: newAuthService(repos.Authorization),
 		Searhing: newSearchService(repos.Searching),
+		Filtering: NewFilterService(repos.Filtering),
 	}  
 }

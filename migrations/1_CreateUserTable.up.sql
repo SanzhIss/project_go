@@ -4,7 +4,6 @@ CREATE TABLE users (
     last_name     varchar(255) not null,
     username      varchar(255) not null unique,
     password_hash varchar(255) not null,
-    mobile_phone  varchar(255) not null,
     email         varchar(255) not null,
 
     PRIMARY KEY (id)
