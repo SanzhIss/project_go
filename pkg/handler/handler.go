@@ -34,6 +34,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	 filter := router.Group("/products")
 	 {
 		filter.GET("/filter/",h.filter)
+		filter.POST("/comment/",h.comment)
 
 	 }
 

@@ -22,10 +22,14 @@ type Filtering interface{
 	FilteringProduct(c *gin.Context,lte,gte int) ([]project_go.Products,error)
 }
 
+type Commenting interface{
+	CommentProduct(project_go.Comment) (int,error)
+}
 type Service struct {
 	Authorization
 	Searhing
 	Filtering
+	Commenting
 }
 
 func NewService(repos *repository.Repository) *Service {
@@ -33,5 +37,6 @@ func NewService(repos *repository.Repository) *Service {
 		Authorization: newAuthService(repos.Authorization),
 		Searhing: newSearchService(repos.Searching),
 		Filtering: NewFilterService(repos.Filtering),
+		Commenting: NewCommentService(repos.Commenting),
 	}  
 }

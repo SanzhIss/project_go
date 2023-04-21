@@ -20,10 +20,16 @@ type Filtering interface {
 	FilteringProduct(c *gin.Context,lte,gte int) ([]project_go.Products, error)
 }
 
+
+type Commenting interface {
+	CommentProduct(comment project_go.Comment) ( int, error)
+}
+
 type Repository struct {
 	Authorization
 	Searching
 	Filtering
+	Commenting
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
@@ -31,5 +37,6 @@ func NewRepository(db *sqlx.DB) *Repository {
 		Authorization: NewAuthPostgres(db),
 		Searching: NewSearchPostgres(db),
 		Filtering: NewFilterPostgres(db),
+		Commenting: NewCommentPostgres(db),
 	}
 }

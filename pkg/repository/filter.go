@@ -32,7 +32,6 @@ func (a * FilterPostgres) FilteringProduct(c *gin.Context,lte,gte int) ([]projec
 	}
 	var products []project_go.Products
 		
-	fmt.Println(lte)
 	sql := "SELECT fp.id,fp.product_title,fp.price,fp.quantity,fp.product_description FROM products as fp "
 	
 	sql = fmt.Sprintf("%s WHERE fp.price BETWEEN %d AND %d",sql,lte,gte)
